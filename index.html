@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title></title>
+
+   <!-- Favicon -->
+  <link rel="icon" href="assets/image/birthday-cake.png" type="image/png" />
+
+  <!-- Google Fonts: Playfair Display & Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- AOS.js — Animate On Scroll -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="landing-active">
+
+  <!-- ============================================================
+       SECTION 0: LANDING INTRO (Full-screen, no scroll)
+       Logika: Klik tombol → fade-out intro, fade-in main, mulai musik
+  ============================================================ -->
+  <section id="landing-intro">
+    <!-- Mesh gradient background + orbs dekoratif -->
+    <div class="landing-orb landing-orb--1"></div>
+    <div class="landing-orb landing-orb--2"></div>
+    <div class="landing-orb landing-orb--3"></div>
+
+    <!-- Line-art dekoratif (SVG inline minimalis) -->
+    <svg class="deco-lines" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="200" cy="200" r="180" stroke="#E2B49A" stroke-width="0.5" stroke-dasharray="4 8"/>
+      <circle cx="200" cy="200" r="140" stroke="#E2B49A" stroke-width="0.3" stroke-dasharray="2 10"/>
+      <path d="M50 200 Q125 100 200 200 Q275 300 350 200" stroke="#E2B49A" stroke-width="0.4" fill="none"/>
+    </svg>
+
+    <div class="landing-content">
+      <p class="landing-pre">✦ dari hati yang paling dalam ✦</p>
+      <h1 class="landing-title">
+        Selamat Hari Lahir,<br/>
+        <em>Nia Kurniasih</em>
+      </h1>
+      <p class="landing-sub">
+        Terima kasih telah menjadi bagian terindah dalam hidupku. Menua bersamamu adalah doa yang selalu kupanjatkan. Kado kecil ini adalah wujud syukurku atas hadirmu.
+      </p>
+      <button id="btn-open-gift" class="btn-gift" aria-label="Buka hadiah">
+        <span class="btn-gift__ring"></span>
+        <span class="btn-gift__text">Buka Hadiahmu</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+
+    <!-- Audio musik latar (ganti src dengan file lokal atau URL valid) -->
+    <audio id="bg-music" loop>
+      <source src="assets/music/romantic.mp3" type="audio/mpeg" />
+      <!-- Placeholder — ganti dengan lagu favorit -->
+    </audio>
+  </section>
+
+
+  <!-- ============================================================
+       MAIN JOURNEY — Seluruh konten halaman utama
+       Tersembunyi saat landing-intro tampil, muncul setelah diklik
+  ============================================================ -->
+  <main id="main-journey" aria-hidden="true">
+
+    <!-- Floating musik control -->
+    <div id="music-ctrl" class="music-ctrl" title="Kontrol musik">
+      <button id="btn-music-toggle" aria-label="Toggle musik">
+        <svg id="icon-play" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        <svg id="icon-pause" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+      </button>
+      <div class="music-bars">
+        <span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+
+
+    <!-- ── HERO: Foto Utama ─────────────────────────────────────── -->
+    <section class="hero-section" id="hero">
+      <div class="hero-bg-orb hero-bg-orb--a"></div>
+      <div class="hero-bg-orb hero-bg-orb--b"></div>
+
+      <div class="hero-inner" data-aos="fade-up" data-aos-duration="1000">
+        <p class="section-pre">✦ Ini tentangmu ✦</p>
+        <h2 class="section-title">Alasan dibalik<br/><em>Setiap bahagiaku</em></h2>
+
+        <!-- Frame foto interaktif — ganti src dengan foto istri -->
+        <div class="hero-photo-wrap">
+          <div class="hero-photo-frame">
+            <img
+              src="assets/image/sampul.jpg"
+              alt="Foto Istri Tercinta"
+              class="hero-photo"
+              id="hero-photo"
+            />
+            <!-- Sticker / badge dekoratif -->
+            <div class="hero-badge hero-badge--age">29</div>
+            <div class="hero-badge hero-badge--heart">♡</div>
+          </div>
+          <!-- Efek halo cahaya -->
+          <div class="hero-halo"></div>
+        </div>
+
+        <p class="hero-caption">
+          Hari ini adalah saksi lahirnya sosok yang paling kucintai di dunia.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ── 4 ALASAN AKU MENCINTAIMU ──────────────────────────────── -->
+    <section class="reasons-section" id="reasons">
+      <div class="section-header" data-aos="fade-up">
+        <p class="section-pre">✦ dari ruang paling tenang ✦</p>
+        <h2 class="section-title">Alasan Mengapa<br/><em>Hatiku Memilihmu</em></h2>
+      </div>
+
+      <!-- Grid 2x2 kartu glassmorphism -->
+      <div class="reasons-grid">
+
+        <article class="glass-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="glass-card__icon">⚓</div>
+          <h3 class="glass-card__title">Keteguhanmu</h3>
+          <p class="glass-card__body">
+            Kamu adalah wanita dengan prinsip dan pendirian yang begitu kuat. Aku mencintai bagaimana kamu tetap berdiri teguh di sampingku melewati berbagai musim kehidupan, tanpa pernah menuntut lebih selain ketulusan. Bagiku, kesetiaanmu adalah kekuatan yang membuatku merasa mampu menghadapi apa pun.
+          </p>
+        </article>
+
+        <article class="glass-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="glass-card__icon">💖</div>
+          <h3 class="glass-card__title">Ketulusanmu</h3>
+          <p class="glass-card__body">
+            Aku mencintaimu karena kamu memiliki hati yang sangat murni. Kamu selalu melihatku apa adanya dan menghargaiku jauh melampaui hal-hal materi. Ketulusanmu mencintaiku tanpa syarat adalah alasan kenapa aku merasa menjadi pria yang sangat berharga setiap kali bersamamu.
+          </p>
+        </article>
+
+        <article class="glass-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="glass-card__icon">🕊️</div>
+          <h3 class="glass-card__title">Kelembutanmu</h3>
+          <p class="glass-card__body">
+            Aku mencintai kontras dalam dirimu; bagaimana kamu bisa begitu tegas dalam prinsip, namun seketika menjadi sosok yang begitu hangat dan manja saat bersamaku. Aku bersyukur menjadi tempat di mana kamu merasa aman untuk menunjukkan sisi paling lembutmu yang tidak semua orang bisa lihat.
+          </p>
+        </article>
+
+        <article class="glass-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="glass-card__icon">👐</div>
+          <h3 class="glass-card__title">Kepedulianmu</h3>
+          <p class="glass-card__body">
+           Aku mencintaimu karena caramu mempedulikan kebahagiaan orang lain, bahkan seringkali di atas keinginanmu sendiri. Perhatianmu pada hal-hal kecil dan caramu menjaga keluarga kita dengan penuh cinta adalah hal yang selalu membuatku kagum setiap harinya.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+
+    <!-- ── PESAN SUARA ANAK (Audio Ducking) ─────────────────────── -->
+    <section class="voice-section" id="voice">
+      <div class="voice-inner" data-aos="fade-up">
+        <p class="section-pre">✦ sebuah bisikan mungil ✦</p>
+        <h2 class="section-title">Pesan Cinta dari<br/><em>Buah Hatimu</em></h2>
+        <p class="voice-desc">
+          Ada suara mungil yang selalu merindukanmu. Tekan tombol ini, dan biarkan kata-katanya menghangatkan harimu.
+        </p>
+
+        <!-- Tombol putar suara anak -->
+        <button id="btn-voice" class="btn-voice" aria-label="Putar pesan suara anak">
+          <div class="btn-voice__ring btn-voice__ring--1"></div>
+          <div class="btn-voice__ring btn-voice__ring--2"></div>
+          <div class="btn-voice__icon">
+            <svg id="voice-play-icon" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <svg id="voice-stop-icon" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+          </div>
+        </button>
+        <p class="voice-label" id="voice-label">Tekan untuk mendengar</p>
+
+        <!-- Audio pesan anak — ganti src dengan rekaman asli -->
+        <audio id="child-voice">
+          <source src="assets/music/ucapan.mp4" type="audio/mpeg" />
+          <!-- Ganti dengan path file rekaman anak -->
+        </audio>
+
+        <!-- Waveform animasi saat diputar -->
+        <div class="voice-wave" id="voice-wave">
+          <span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ── TIME TRAVEL GALLERY (Interactive Lightbox) ────────────── -->
+    <section class="gallery-section" id="gallery">
+      <div class="section-header" data-aos="fade-up">
+        <p class="section-pre">✦ sudut kenangan ✦</p>
+        <h2 class="section-title">Ruang Nostalgia<br/><em>Untukmu, Nia Kurniasih</em></h2>
+        <p class="gallery-hint">Di sini, waktu seolah berhenti. Ketuk pada setiap potret untuk merasakan kembali hangatnya momen-momen terbaik kita.</p>
+      </div>
+
+      <!-- Grid galeri — data-caption adalah teks puitis per foto -->
+      <div class="gallery-grid">
+
+        <figure class="gallery-item gallery-item--wide"
+          data-aos="fade-up" data-aos-delay="50"
+          data-caption="Pertemuan tak sengaja di kampus yang mengubah seluruh garis hidupku."
+          data-year="Di Sini Segalanya Dimulai"
+          data-src="assets/image/fst.jpg">
+          <img src="assets/image/fst.jpg" alt="Di Sini Segalanya Dimulai" loading="lazy" />
+          <div class="gallery-item__overlay"><span>Di Sini Segalanya Dimulai</span></div>
+        </figure>
+
+        <figure class="gallery-item"
+          data-aos="fade-up" data-aos-delay="100"
+          data-caption="Hari saat doa-doa kita menyatu dalam satu janji untuk selamanya."
+          data-year="Janji Suci"
+          data-src="assets/image/akad.JPG">
+          <img src="assets/image/akad.JPG" alt="Janji Suci" loading="lazy" />
+          <div class="gallery-item__overlay"><span>Janji Suci</span></div>
+        </figure>
+
+        <figure class="gallery-item"
+          data-aos="fade-up" data-aos-delay="150"
+          data-caption="Menemukan kebahagiaan di tempat tersederhana, karena rumah sesungguhnya adalah kamu."
+          data-year="Dunia Milik Berdua"
+          data-src="assets/image/berdua.jpg">
+          <img src="assets/image/berdua.jpg" alt="Dunia Milik Berdua" loading="lazy" />
+          <div class="gallery-item__overlay"><span>Dunia Milik Berdua</span></div>
+        </figure>
+
+        <figure class="gallery-item"
+          data-aos="fade-up" data-aos-delay="200"
+          data-caption="Satu garis kecil dan detak jantung yang menjawab semua harapan besar kita."
+          data-year="Keajaiban Kecil"
+          data-src="assets/image/usg.jpg">
+          <img src="assets/image/usg.jpg" alt="Keajaiban Kecil" loading="lazy" />
+          <div class="gallery-item__overlay"><span>Keajaiban Kecil</span></div>
+        </figure>
+
+        <figure class="gallery-item gallery-item--wide"
+          data-aos="fade-up" data-aos-delay="250"
+          data-caption="Melihatmu menjadi ibu adalah caraku melihat ketulusan yang paling nyata."
+          data-year="Cintamu yang Luar Biasa"
+          data-src="assets/image/ibu.jpg">
+          <img src="assets/image/ibu.jpg" alt="Cintamu yang Luar Biasa" loading="lazy" />
+          <div class="gallery-item__overlay"><span>Cintamu yang Luar Biasa</span></div>
+        </figure>
+
+        <figure class="gallery-item"
+          data-aos="fade-up" data-aos-delay="300"
+          data-caption="Senyum lebar yang selalu bisa meruntuhkan segala lelah dan gundahku"
+          data-year="Cahaya Hatiku"
+          data-src="assets/image/momen.jpg">
+          <img src="assets/image/momen.jpg" alt="Cahaya Hatiku" loading="lazy" />
+          <div class="gallery-item__overlay"><span>Cahaya Hatiku</span></div>
+        </figure>
+
+        <figure class="gallery-item"
+          data-aos="fade-up" data-aos-delay="350"
+          data-caption="Tetaplah jadi teman jajan setia yang selalu semangat mencari menu baru setiap hari."
+          data-year="Bahagia yang Sederhana"
+          data-src="assets/image/hobi.jpg">
+          <img src="assets/image/hobi.jpg" alt="Bahagia yang Sederhana" loading="lazy" />
+          <div class="gallery-item__overlay"><span>Bahagia yang Sederhana</span></div>
+        </figure>
+
+        <figure class="gallery-item"
+          data-aos="fade-up" data-aos-delay="400"
+          data-caption="Bersama kalian, aku siap melangkah menuju ribuan hari bahagia di depan sana."
+          data-year="Menuju Selamanya"
+          data-src="assets/image/kita.jpg">
+          <img src="assets/image/kita.jpg" alt="Menuju Selamanya" loading="lazy" />
+          <div class="gallery-item__overlay"><span>Menuju Selamanya</span></div>
+        </figure>
+
+      </div>
+    </section>
+
+
+    <!-- LIGHTBOX OVERLAY (tersembunyi, muncul saat foto diklik) -->
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+      <button id="lightbox-close" class="lightbox-close" aria-label="Tutup">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+      <div class="lightbox-inner">
+        <div class="lightbox-img-wrap">
+          <img id="lightbox-img" src="" alt="" />
+        </div>
+        <div class="lightbox-meta">
+          <span id="lightbox-year" class="lightbox-year"></span>
+          <p id="lightbox-caption" class="lightbox-caption"></p>
+        </div>
+      </div>
+      <!-- Navigasi lightbox -->
+      <button id="lightbox-prev" class="lightbox-nav lightbox-nav--prev" aria-label="Foto sebelumnya">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      </button>
+      <button id="lightbox-next" class="lightbox-nav lightbox-nav--next" aria-label="Foto berikutnya">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+
+
+    <!-- ── AMPLOP SURAT 3D ─────────────────────────────────────── -->
+    <section class="letter-section" id="letter">
+      <div class="section-header" data-aos="fade-up">
+        <p class="section-pre">✦ dari suami yang mencintaimu ✦</p>
+        <h2 class="section-title">Sedikit Tulisan<br/><em>Dari Hatiku</em></h2>
+      </div>
+
+      <!-- Amplop interaktif 3D -->
+      <div class="envelope-wrap" data-aos="zoom-in" data-aos-delay="100">
+        <div class="envelope" id="envelope">
+
+          <!-- SHELL: Bagian visual amplop dengan tinggi tetap -->
+          <div class="envelope-shell">
+            <div class="envelope__back"></div>
+
+            <!-- Tutup atas amplop (flip animation) -->
+            <div class="envelope__flap" id="envelope-flap">
+              <div class="envelope__flap-inner">
+                <div class="envelope__seal" id="envelope-seal">
+                  <span>💌</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bagian depan amplop -->
+            <div class="envelope__front">
+              <div class="envelope__to">
+                <p class="envelope__to-label">Untuk,</p>
+                <p class="envelope__to-name">Istriku Tercinta</p>
+              </div>
+            </div>
+
+            <!-- Tombol toggle amplop — teks berubah saat dibuka/ditutup -->
+            <button class="envelope__btn" id="btn-open-letter" aria-label="Buka surat" data-state="closed">
+              <span class="envelope__btn-text">Buka Suratmu ✦</span>
+            </button>
+          </div>
+
+          <!-- LETTER WRAP: grid-template-rows trick — satu-satunya cara CSS murni
+               untuk animasikan height:auto, baik saat buka MAUPUN tutup, tanpa JS -->
+          <div class="envelope__letter-wrap" id="envelope-letter-wrap">
+            <div class="envelope__letter" id="envelope-letter">
+
+              <!-- Strip kertas: hint visual bahwa surat ada di dalam amplop -->
+              <div class="letter-paper-tab">
+                <span class="letter-paper-tab__fold"></span>
+              </div>
+
+              <div class="letter-paper">
+                <p class="letter-date">30  Maret 2026</p>
+                <p class="letter-greeting">Kepada Cintaku yang Tersayang,</p>
+                <div class="letter-body" id="letter-body">
+                  <!-- Diisi typewriter dari JS -->
+                </div>
+                <!-- Tanda tangan disembunyikan dulu, muncul setelah typewriter selesai -->
+                <p class="letter-signature" id="letter-signature">
+                  Dengan segenap cinta,<br/><em>Suamimu Muhamad Fauzi Rachman</em> 💖
+                </p>
+              </div>
+
+            </div>
+          </div><!-- /.envelope__letter-wrap -->
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ── DOA & HARAPAN ──────────────────────────────────────── -->
+    <section class="prayer-section" id="prayer">
+      <div class="prayer-orb prayer-orb--a"></div>
+      <div class="prayer-orb prayer-orb--b"></div>
+
+      <div class="prayer-inner" data-aos="fade-up">
+        <p class="section-pre">✦ doa yang selalu kupanjatkan ✦</p>
+        <h2 class="section-title">Harapan &<br/><em>Doa Untukmu</em></h2>
+
+        <div class="prayer-cards">
+          <div class="prayer-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="prayer-card__num">01</div>
+            <p>Semoga selalu diberikan kesehatan lahir dan batin, dipanjangkan umurnya dalam ketaatan, serta setiap langkah yang dijalani senantiasa mendatangkan keberkahan bagi diri sendiri maupun bagi keluarga.</p>
+          </div>
+          <div class="prayer-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="prayer-card__num">02</div>
+            <p>Semoga rezekinya selalu dilancarkan dari arah mana saja, segala urusannya dipermudah, dan apa pun yang sedang dicita-citakan atau diharapkan bisa segera terwujud di waktu yang terbaik.</p>
+          </div>
+          <div class="prayer-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="prayer-card__num">03</div>
+            <p>Semoga hati selalu tenang dalam beribadah, semakin rajin dan istiqomah mendekatkan diri kepada-Nya, serta terus tumbuh menjadi sosok yang shalehah dan menyejukkan hati bagi siapa pun di sekitarnya.</p>
+          </div>
+          <div class="prayer-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="prayer-card__num">04</div>
+            <p>Semoga kita terus diberikan kekuatan untuk selalu bareng-bareng dalam keadaan apa pun, saling menjaga dan saling menyayangi, hingga akhirnya kita bisa menua bersama sampai akhir nanti.</p>
+          </div>
+        </div>
+
+        <!-- Tombol konfeti perayaan -->
+        <button id="btn-confetti" class="btn-celebrate" aria-label="Rayakan!">
+          🎉 Rayakan Hari Ini!
+        </button>
+      </div>
+    </section>
+
+
+    <!-- ── FOOTER ─────────────────────────────────────────────── -->
+    <footer class="site-footer" data-aos="fade-up">
+      <div class="footer-deco">
+        <svg viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 30 Q50 10 100 30 Q150 50 190 30" stroke="#E2B49A" stroke-width="0.8" fill="none"/>
+          <circle cx="100" cy="30" r="3" fill="#E2B49A" opacity="0.6"/>
+        </svg>
+      </div>
+      <p class="footer-tagline">
+        "Kamu bukan hanya tujuanku — kamu juga perjalanannya."
+      </p>
+      <p class="footer-credit">Dibuat dengan 💖 oleh suamimu · &copy {{ Tahun Ini }}</p>
+    </footer>
+
+  </main><!-- /#main-journey -->
+
+
+  <!-- ============================================================
+       LIBRARIES (CDN)
+  ============================================================ -->
+  <!-- AOS.js -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  <!-- Main Script -->
+  <script src="script.js"></script>
+</body>
+</html>
